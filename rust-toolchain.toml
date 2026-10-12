@@ -1,0 +1,5 @@
+[toolchain]
+# MSRV is 1.85 (matches AppFront). Pinned to a specific stable release for reproducible builds.
+channel = "1.97.0"
+components = ["clippy", "rustfmt"]
+profile = "minimal"

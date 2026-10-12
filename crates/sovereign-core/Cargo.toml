@@ -1,0 +1,15 @@
+[package]
+name = "sovereign-core"
+description = "TPT Sovereign Agent Platform: sovereign-core layer"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+tpt-anima = { git = "https://github.com/tpt-solutions/tpt-anima", rev = "408c2e0065ba99e619fa7277d3801e0c9abad0ff", package = "tpt-anima" }
+tpt-keystone = { git = "https://github.com/tpt-solutions/tpt-keystone-db", rev = "b861edd6f01e08061e0e1f3a86e6a2a1e1f2f449", package = "tpt-keystone" }
+tpt-crypto = { git = "https://github.com/tpt-solutions/tpt-crypto", rev = "a3bd3e31cfab1d5b5fb8b9b49593d10f9039d59d", package = "tpt-crypto" }
+tpt-primitives = { git = "https://github.com/tpt-solutions/tpt-primitives", rev = "8f4e27c05db0ba06e38abf20670bacd4058d1554", package = "tpt-primitives" }
+tpt-appfront-core = { git = "https://github.com/tpt-solutions/tpt-appfront", rev = "61465269be731aaf4babf6cd3ec87ecf664d7397", package = "tpt-appfront-core" }

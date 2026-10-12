@@ -1,0 +1,149 @@
+# TPT App — Sovereign Agent Platform
+
+**Repository:** `tpt-app-sovereign-agent`  
+**Codename:** Sovereign  
+**License:** Dual MIT OR Apache-2.0  
+**Status:** Design  
+**Primary foundation crates used:**  
+`tpt-anima` · `tpt-keystone-db` · `tpt-crypto` · `tpt-shatter` · `tpt-appfront` · `tpt-primitives` · light use of `tpt-concord`
+
+---
+
+## 1. Purpose & Vision
+
+A complete offline-first desktop platform for creating, running and composing autonomous agents that the user fully owns.
+
+It replaces the current fragmented landscape of cloud-heavy agent frameworks with a single memory-safe, capability-based, zero-cloud runtime.
+
+Users can:
+
+- Define agents with rich attended memory
+- Give them verifiable identity (ZKPA)
+- Let agents negotiate outcomes with each other (INP)
+- Persist state in a local multi-engine database
+- Run everything completely offline
+- Export or move an entire agent colony with cryptographic integrity
+
+The same codebase is:
+
+1. Fully open source (MIT OR Apache-2.0) so anyone can build it themselves
+2. Packaged as convenient pre-built binaries and sold on Gumroad for people who prefer not to compile
+
+---
+
+## 2. Problem Statement
+
+Existing agent tooling is typically:
+
+- Cloud dependent
+- Python-centric and hard to audit
+- Weak on identity, permissions and long-term memory
+- Difficult to ship as a clean, professional desktop product
+
+There is currently no polished, offline, memory-safe commercial (or easily buildable) alternative.
+
+---
+
+## 3. Solution Overview
+
+| Layer                    | Source                    | Responsibility                                      |
+|--------------------------|---------------------------|-----------------------------------------------------|
+| Cognitive Kernel         | tpt-anima-ck              | Scheduling, isolation, lifecycle                    |
+| Intent & Negotiation     | tpt-anima-inp             | Agent-to-agent outcome negotiation                  |
+| Semantic State Engine    | tpt-anima-sse             | Attended memory                                     |
+| Zero-Knowledge Identity  | tpt-anima-zkpa            | Ephemeral, provable agent identity                  |
+| Storage                  | tpt-keystone-db           | Local multi-engine database + WASM UDFs             |
+| Privacy / Breach tolerance | tpt-shatter             | Field-level fragmentation & capability tokens       |
+| Cryptography             | tpt-crypto                | All cryptographic primitives                        |
+| UI                       | tpt-appfront              | Unified native desktop UI                           |
+| Shared primitives        | tpt-primitives            | Identity, capability, intent, evidence, claim       |
+
+---
+
+## 4. Core Features
+
+### MVP (v1.0)
+
+- Create / edit / delete agents
+- Assign memory scopes (attended memory)
+- Basic tool calling (local filesystem, Keystone queries, user-approved HTTP)
+- Multi-agent negotiation sessions
+- Local Keystone database per colony
+- Capability-based permissions
+- Full offline operation
+- Export / import colony as a signed + encrypted archive
+- Activity log and inspection UI
+- Native desktop binaries (Windows, macOS, Linux)
+
+### Later versions (no commitment to purchasers)
+
+- Visual negotiation graph editor
+- Memory visualisation
+- WASM tool sandboxing
+- Agent templates
+- Headless / CLI mode
+- Stronger formal claims integration
+
+---
+
+## 5. Licensing & Dependency Rules
+
+- The application itself is dual-licensed MIT OR Apache-2.0.
+- All dependencies must be compatible with both MIT and Apache-2.0 (no Apache-2.0-only crates).
+- Foundation crates that are already dual-licensed are used as-is.
+
+---
+
+## 6. Security & Privacy Model
+
+- Everything runs and stores data locally by default.
+- Agents only receive explicitly granted capabilities.
+- No telemetry, no phone-home, no mandatory accounts.
+- Colony export is encrypted with a user-chosen passphrase.
+- Shatter is used for high-sensitivity data.
+
+---
+
+## 7. Distribution Model
+
+Two parallel channels:
+
+1. **Open Source**  
+   Anyone can clone the repository and build the application themselves.
+
+2. **Gumroad (Commercial Convenience)**  
+   Pre-built, signed binaries + simple installer are sold as a one-time purchase.  
+   Purchasers receive the binary and a license key file.  
+   No updates are promised.  
+   Purchasers may submit approved error reports that may be considered for a future major release.
+
+The existence of the open-source repository is not hidden, but it is also not required knowledge for Gumroad buyers.
+
+---
+
+## 8. Non-Goals (v1)
+
+- Cloud hosting or multi-tenant service
+- Real-time collaboration between different users
+- Guaranteed ongoing updates or support
+- Mobile application
+- Supporting every possible LLM backend on day one
+
+---
+
+## 9. Success Criteria
+
+- A non-expert can create a useful multi-agent system in under 30 minutes
+- An entire colony can be moved between machines with cryptographic integrity
+- The application runs completely offline
+- Binary size and startup time are competitive with other professional desktop tools
+- The same codebase cleanly serves both open-source builders and Gumroad purchasers
+
+---
+
+## 10. Open Questions
+
+- Exact desktop shell technology (pure AppFront native shell vs thin Tauri wrapper)
+- How much of the Anima internal surface to expose in the UI vs keep internal
+- Preferred local LLM integration strategy for v1
+- Format of the Gumroad license key file
